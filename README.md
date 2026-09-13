@@ -405,5 +405,4 @@ admin-frontend/              (admin dashboard — full access)
   src/services/api.js  auth (OTP) + product endpoints + admin-only endpoints
   vercel.json / .env.example
 ```
-#   s a d h v i t h - c r e a t i o n  
- 
+#
