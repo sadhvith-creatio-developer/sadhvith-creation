@@ -52,8 +52,8 @@ def build_auth_router(role: str) -> APIRouter:
         )
 
     @router.post("/register/verify-otp", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
-    def register_verify_otp(payload: VerifyOtp):
-        return account_service.verify_registration_otp(role, payload.email, payload.otp)
+    async def register_verify_otp(payload: VerifyOtp):
+        return await account_service.verify_registration_otp(role, payload.email, payload.otp)
 
     @router.post("/login", response_model=TokenResponse)
     def login(payload: LoginRequest):

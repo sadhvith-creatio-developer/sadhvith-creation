@@ -40,6 +40,7 @@ class Settings:
     # logged to the server console instead of sent, so local development
     # works without a real mail provider.
 # Email (Resend)
+<<<<<<< HEAD
     RESEND_API_KEY: str = os.getenv("RESEND_API_KEY", "")
 
     RESEND_FROM_EMAIL: str = os.getenv(
@@ -49,6 +50,15 @@ class Settings:
 
     RESEND_FROM_NAME: str = os.getenv(
         "RESEND_FROM_NAME",
+=======
+    BREVO_API_KEY: str = os.getenv("BREVO_API_KEY", "")
+    BREVO_FROM_EMAIL: str = os.getenv(
+        "BREVO_FROM_EMAIL",
+        "sadhvithcreationdeveloper@gmail.com"
+    )
+    BREVO_FROM_NAME: str = os.getenv(
+        "BREVO_FROM_NAME",
+>>>>>>> 18ea999 (Update Sadhvith Creation application)
         "SADHVITH CREATION"
     )
 
