@@ -39,13 +39,18 @@ class Settings:
     # and password resets. If SMTP_HOST is left blank, OTP emails are
     # logged to the server console instead of sent, so local development
     # works without a real mail provider.
-    SMTP_HOST: str = os.getenv("SMTP_HOST", "")
-    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
-    SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
-    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    SMTP_USE_TLS: bool = os.getenv("SMTP_USE_TLS", "true").lower() == "true"
-    SMTP_FROM_EMAIL: str = os.getenv("SMTP_FROM_EMAIL", "no-reply@sadhvithcreation.example")
-    SMTP_FROM_NAME: str = os.getenv("SMTP_FROM_NAME", "SADHVITH CREATION")
+# Email (Resend)
+    RESEND_API_KEY: str = os.getenv("RESEND_API_KEY", "")
+
+    RESEND_FROM_EMAIL: str = os.getenv(
+        "RESEND_FROM_EMAIL",
+        "onboarding@resend.dev"
+    )
+
+    RESEND_FROM_NAME: str = os.getenv(
+        "RESEND_FROM_NAME",
+        "SADHVITH CREATION"
+    )
 
     # OTP (email verification + forgot password)
     OTP_EXPIRE_MINUTES: int = int(os.getenv("OTP_EXPIRE_MINUTES", "10"))

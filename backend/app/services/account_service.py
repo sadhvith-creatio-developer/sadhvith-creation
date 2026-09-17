@@ -53,7 +53,7 @@ def _require_role(role: str) -> None:
 # ---------------------------------------------------------------------------
 # Registration (send OTP -> verify OTP -> account created)
 # ---------------------------------------------------------------------------
-def request_registration_otp(role: str, payload: RegisterInit) -> dict:
+async def request_registration_otp(role: str, payload: RegisterInit) -> dict:
     _require_role(role)
     db = get_db()
     email = payload.email.lower()
@@ -81,7 +81,7 @@ def request_registration_otp(role: str, payload: RegisterInit) -> dict:
         upsert=True,
     )
 
-    send_otp_email(email, payload.name, otp, purpose="register")
+    await send_otp_email(email, payload.name, otp, purpose="register")
     return {
         "success": True,
         "message": f"A verification code was sent to {email}.",
@@ -90,7 +90,7 @@ def request_registration_otp(role: str, payload: RegisterInit) -> dict:
     }
 
 
-def resend_registration_otp(role: str, email: str) -> dict:
+async def resend_registration_otp(role: str, email: str) -> dict:
     _require_role(role)
     db = get_db()
     email = email.lower()
@@ -114,7 +114,7 @@ def resend_registration_otp(role: str, email: str) -> dict:
             "expiresAt": now + timedelta(minutes=settings.OTP_EXPIRE_MINUTES),
         }},
     )
-    send_otp_email(email, otp_doc.get("pendingName", ""), otp, purpose="register")
+    await send_otp_email(email, otp_doc.get("pendingName", ""), otp, purpose="register")
     return {
         "success": True,
         "message": f"A new verification code was sent to {email}.",
@@ -123,7 +123,7 @@ def resend_registration_otp(role: str, email: str) -> dict:
     }
 
 
-def verify_registration_otp(role: str, email: str, otp: str) -> dict:
+async def verify_registration_otp(role: str, email: str, otp: str) -> dict:
     _require_role(role)
     db = get_db()
     email = email.lower()
@@ -198,7 +198,7 @@ def get_account_by_id(account_id: str, allowed_roles: set[str]) -> dict:
 # ---------------------------------------------------------------------------
 # Forgot password (OTP-verified reset)
 # ---------------------------------------------------------------------------
-def request_password_reset_otp(role: str, email: str) -> dict:
+async def request_password_reset_otp(role: str, email: str) -> dict:
     _require_role(role)
     db = get_db()
     email = email.lower()
@@ -231,7 +231,7 @@ def request_password_reset_otp(role: str, email: str) -> dict:
         }},
         upsert=True,
     )
-    send_otp_email(email, account_doc.get("name", ""), otp, purpose="reset")
+    await send_otp_email(email,account_doc.get("name", ""), otp, purpose="reset")
     return generic_response
 
 

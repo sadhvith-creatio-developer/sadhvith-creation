@@ -1,0 +1,8 @@
+[33mbe5d281[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Update Sadhvith Creation application
+ README.md                               |   1 [31m-[m
+ backend/.env.example                    |   5 [32m++[m
+ backend/app/config.py                   |  19 [32m+++[m[31m--[m
+ backend/app/routes/auth.py              |  42 [32m++++++++[m[31m---[m
+ backend/app/services/account_service.py |  14 [32m++[m[31m--[m
+ backend/app/utils/email_service.py      | 121 [32m++++++++++++++++++++[m[31m------------[m
+ 6 files changed, 133 insertions(+), 69 deletions(-)

@@ -30,13 +30,26 @@ def build_auth_router(role: str) -> APIRouter:
     router = APIRouter(prefix=f"/api/auth/{role}", tags=[f"auth-{role}"])
     guard = get_current_admin if role == "admin" else get_current_manager
 
-    @router.post("/register/send-otp", response_model=OtpSentResponse, status_code=status.HTTP_200_OK)
-    def register_send_otp(payload: RegisterInit):
-        return account_service.request_registration_otp(role, payload)
+    @router.post(
+        "/register/send-otp",
+        response_model=OtpSentResponse,
+        status_code=status.HTTP_200_OK
+    )
+    async def register_send_otp(payload: RegisterInit):
+        return await account_service.request_registration_otp(
+            role,
+            payload
+        )
 
-    @router.post("/register/resend-otp", response_model=OtpSentResponse)
-    def register_resend_otp(payload: ResendOtp):
-        return account_service.resend_registration_otp(role, payload.email)
+    @router.post(
+        "/register/resend-otp",
+        response_model=OtpSentResponse
+    )
+    async def register_resend_otp(payload: ResendOtp):
+        return await account_service.resend_registration_otp(
+            role,
+            payload.email
+        )
 
     @router.post("/register/verify-otp", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
     def register_verify_otp(payload: VerifyOtp):
@@ -55,10 +68,17 @@ def build_auth_router(role: str) -> APIRouter:
         # JWTs are stateless; logout is a frontend concern (discard the token).
         return {"success": True, "message": "Logged out."}
 
-    @router.post("/forgot-password/send-otp", response_model=OtpSentResponse)
-    def forgot_password_send_otp(payload: ForgotPasswordInit):
-        return account_service.request_password_reset_otp(role, payload.email)
-
+    @router.post(
+        "/forgot-password/send-otp",
+        response_model=OtpSentResponse
+    )
+    async def forgot_password_send_otp(
+        payload: ForgotPasswordInit
+    ):
+        return await account_service.request_password_reset_otp(
+            role,
+            payload.email
+        )
     @router.post("/forgot-password/reset", response_model=MessageResponse)
     def forgot_password_reset(payload: ResetPassword):
         return account_service.reset_password(role, payload)
