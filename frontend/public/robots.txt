@@ -1,0 +1,11 @@
+# robots.txt — Sadhvith Creation
+# https://sadhvith-creation.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap location (Google, Bing, and others read this)
+Sitemap: https://sadhvith-creation.vercel.app/sitemap.xml
+
+# Disallow admin/API paths if they ever get exposed on this domain
+Disallow: /api/

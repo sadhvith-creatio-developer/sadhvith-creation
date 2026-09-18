@@ -37,7 +37,7 @@ export default function Hero() {
           </h1>
           <p>
             Discover thoughtfully designed, handcrafted products from
-            Sadhvith Creation — made for homes and desks that like to keep
+            Sadhvith Creation made for homes and desks that like to keep
             things simple.
           </p>
           <div className="hero-actions">

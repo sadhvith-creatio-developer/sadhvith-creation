@@ -1,3 +1,4 @@
+// src/pages/Home.jsx  — REPLACE your existing file with this
 import { useEffect, useState } from "react";
 import { Leaf, Truck, HeartHandshake } from "lucide-react";
 import Hero from "../components/Hero";
@@ -6,7 +7,7 @@ import ProductGrid from "../components/ProductGrid";
 import LoadingState from "../components/LoadingState";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { productsApi } from "../services/api";
-import { usePageTitle } from "../utils/usePageTitle";
+import { useSEO } from "../hooks/useSEO";
 
 const features = [
   {
@@ -27,7 +28,12 @@ const features = [
 ];
 
 export default function Home() {
-  usePageTitle("");
+  // 🔍 Full homepage SEO — no title arg = uses defaultTitle
+  useSEO({
+    path: "/",
+    description:
+      "Discover handcrafted wooden name plates, custom gifts and thoughtfully designed products from Sadhvith Creation. Shop online and enquire instantly via WhatsApp.",
+  });
 
   const [collection, setCollection] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,8 +44,6 @@ export default function Home() {
     async function loadFeatured() {
       setLoading(true);
       try {
-        // Prefer featured products; fall back to the newest six so the
-        // homepage is never empty even if nothing is marked as featured.
         const featuredRes = await productsApi.list({ featured: true, sort: "featured", limit: 6 });
         let list = featuredRes.products;
         if (!list || list.length === 0) {
@@ -55,9 +59,7 @@ export default function Home() {
     }
 
     loadFeatured();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
 
   return (

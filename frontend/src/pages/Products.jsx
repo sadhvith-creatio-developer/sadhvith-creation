@@ -1,29 +1,35 @@
+// src/pages/Products.jsx  — REPLACE your existing file with this
 import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import ProductGrid from "../components/ProductGrid";
 import LoadingState from "../components/LoadingState";
 import EmptyState from "../components/EmptyState";
 import { productsApi } from "../services/api";
-import { usePageTitle } from "../utils/usePageTitle";
+import { useSEO } from "../hooks/useSEO";
 
 const sortOptions = [
-  { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
+  { value: "featured",   label: "Featured" },
+  { value: "price-asc",  label: "Price: Low to High" },
   { value: "price-desc", label: "Price: High to Low" },
-  { value: "rating", label: "Highest Rated" },
-  { value: "newest", label: "Newest" },
+  { value: "rating",     label: "Highest Rated" },
+  { value: "newest",     label: "Newest" },
 ];
 
 export default function Products() {
-  usePageTitle("Products");
+  // 🔍 Products listing SEO
+  useSEO({
+    title: "Our Products",
+    description:
+      "Browse the full collection of handcrafted products from Sadhvith Creation — wooden name plates, personalized gifts and more. Filter by category and find the perfect piece.",
+    path: "/products",
+  });
 
   const [allProducts, setAllProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
-  const [sort, setSort] = useState("featured");
+  const [loading, setLoading]         = useState(true);
+  const [error, setError]             = useState(null);
+  const [query, setQuery]             = useState("");
+  const [category, setCategory]       = useState("All");
+  const [sort, setSort]               = useState("featured");
 
   useEffect(() => {
     let cancelled = false;
@@ -42,13 +48,9 @@ export default function Products() {
     }
 
     loadProducts();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
 
-  // Categories are derived from the product data, not hardcoded, so a new
-  // category added by a manager shows up here automatically.
   const categories = useMemo(() => {
     const unique = new Set(allProducts.map((p) => p.category).filter(Boolean));
     return ["All", ...unique];
@@ -60,7 +62,6 @@ export default function Products() {
     let list = allProducts.filter((product) => {
       const matchesCategory = category === "All" || product.category === category;
       if (!matchesCategory) return false;
-
       if (!q) return true;
 
       const haystack = [
@@ -70,29 +71,18 @@ export default function Products() {
         product.category,
         product.material,
         ...(product.tags || []),
-      ]
-        .join(" ")
-        .toLowerCase();
+      ].join(" ").toLowerCase();
 
       return haystack.includes(q);
     });
 
     list = [...list];
     switch (sort) {
-      case "price-asc":
-        list.sort((a, b) => a.finalPrice - b.finalPrice);
-        break;
-      case "price-desc":
-        list.sort((a, b) => b.finalPrice - a.finalPrice);
-        break;
-      case "rating":
-        list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-        break;
-      case "newest":
-        list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        break;
-      default:
-        list.sort((a, b) => (b.featured === true) - (a.featured === true));
+      case "price-asc":  list.sort((a, b) => a.finalPrice - b.finalPrice); break;
+      case "price-desc": list.sort((a, b) => b.finalPrice - a.finalPrice); break;
+      case "rating":     list.sort((a, b) => (b.rating || 0) - (a.rating || 0)); break;
+      case "newest":     list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); break;
+      default:           list.sort((a, b) => (b.featured === true) - (a.featured === true));
     }
 
     return list;
@@ -128,9 +118,7 @@ export default function Products() {
               <button
                 key={cat}
                 type="button"
-                className={
-                  "category-chip" + (category === cat ? " category-chip-active" : "")
-                }
+                className={"category-chip" + (category === cat ? " category-chip-active" : "")}
                 onClick={() => setCategory(cat)}
               >
                 {cat}

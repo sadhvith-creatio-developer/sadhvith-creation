@@ -1,4 +1,12 @@
-import { useEffect, useState } from "react";
+// src/pages/ProductDetails.jsx  — REPLACE your existing file with this
+//
+// Key SEO additions:
+//  • Dynamic <title>, <meta description>, og:image, og:type="product"
+//  • Product JSON-LD schema (price, availability, rating)
+//  • BreadcrumbList JSON-LD schema
+//  • Canonical URL matching the product slug
+
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, Star } from "lucide-react";
 import ProductGallery from "../components/ProductGallery";
@@ -8,7 +16,8 @@ import ProductGrid from "../components/ProductGrid";
 import LoadingState from "../components/LoadingState";
 import { productsApi } from "../services/api";
 import { formatPrice } from "../utils/formatPrice";
-import { usePageTitle } from "../utils/usePageTitle";
+import { useSEO } from "../hooks/useSEO";
+import { buildProductSchema, buildBreadcrumbSchema } from "../utils/seo";
 
 export default function ProductDetails() {
   const { slug } = useParams();
@@ -18,7 +27,37 @@ export default function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
-  usePageTitle(product ? product.title : "Product");
+  // ─── Build schemas only when product data is ready ───────────────────────
+  const schemas = useMemo(() => {
+    if (!product) return [];
+    return [
+      buildProductSchema(product),
+      buildBreadcrumbSchema([
+        { name: "Home",     path: "/" },
+        { name: "Products", path: "/products" },
+        { name: product.title, path: `/products/${product.slug}` },
+      ]),
+    ];
+  }, [product]);
+
+  // 🔍 Dynamic SEO — updates automatically when product loads
+  useSEO({
+    title: product ? product.title : "Product",
+    description: product
+      ? (product.shortDescription || product.description || `Buy ${product.title} from Sadhvith Creation. Handcrafted with care.`).slice(0, 160)
+      : "",
+    path: `/products/${slug}`,
+    image: product?.images?.[0] || "",
+    isProduct: !!product,
+    productData: product
+      ? {
+          price: product.finalPrice,
+          currency: "INR",
+          availability: product.inStock === false ? "out of stock" : "in stock",
+        }
+      : null,
+    schemas,
+  });
 
   useEffect(() => {
     let cancelled = false;
@@ -43,9 +82,7 @@ export default function ProductDetails() {
     }
 
     loadProduct();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [slug]);
 
   if (loading) {
@@ -77,6 +114,15 @@ export default function ProductDetails() {
   return (
     <section className="section">
       <div className="container">
+        {/* Breadcrumb — visible nav, mirrors the JSON-LD schema */}
+        <nav aria-label="Breadcrumb" className="breadcrumb">
+          <Link to="/">Home</Link>
+          <span aria-hidden="true"> / </span>
+          <Link to="/products">Products</Link>
+          <span aria-hidden="true"> / </span>
+          <span aria-current="page">{product.title}</span>
+        </nav>
+
         <Link to="/products" className="back-link">
           <ArrowLeft size={16} />
           Back to Products

@@ -1,0 +1,11 @@
+// Merge these scripts into your existing frontend/package.json
+// (keep all existing scripts, just add "sitemap" and update "build")
+{
+  "scripts": {
+    "dev":     "vite",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "build":   "npm run sitemap && vite build",
+    "preview": "vite preview",
+    "lint":    "eslint ."
+  }
+}

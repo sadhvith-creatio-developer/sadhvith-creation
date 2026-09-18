@@ -1,10 +1,16 @@
+// src/pages/Contact.jsx  — REPLACE your existing file with this
 import { Mail } from "lucide-react";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { config } from "../config";
-import { usePageTitle } from "../utils/usePageTitle";
+import { useSEO } from "../hooks/useSEO";
 
 export default function Contact() {
-  usePageTitle("Contact");
+  useSEO({
+    title: "Contact Us",
+    description:
+      "Get in touch with Sadhvith Creation. Chat with us on WhatsApp for product questions, custom orders, or anything else — we reply fast.",
+    path: "/contact",
+  });
 
   return (
     <section className="section">

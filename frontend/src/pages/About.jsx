@@ -1,8 +1,14 @@
+// src/pages/About.jsx  — REPLACE your existing file with this
 import { config } from "../config";
-import { usePageTitle } from "../utils/usePageTitle";
+import { useSEO } from "../hooks/useSEO";
 
 export default function About() {
-  usePageTitle("About");
+  useSEO({
+    title: `About ${config.brandName}`,
+    description:
+      "Learn about Sadhvith Creation — a small, passionate team making handcrafted, thoughtfully designed products for homes and desks. Quality over quantity, always.",
+    path: "/about",
+  });
 
   return (
     <section className="section">
@@ -25,7 +31,8 @@ export default function About() {
           </p>
           <p>
             If you have a question about materials, sizing, or customisation
-            before you buy, the easiest way to reach us is over WhatsApp you'll hear back from the people who actually make the products.
+            before you buy, the easiest way to reach us is over WhatsApp
+            you'll hear back from the people who actually make the products.
           </p>
         </div>
       </div>
