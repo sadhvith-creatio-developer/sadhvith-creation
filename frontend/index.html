@@ -1,143 +1,310 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
 
-    <!-- ════════════════════════════════════════════════════════
-         VIEWPORT & THEME
-    ════════════════════════════════════════════════════════ -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#F97316" />
+    <!-- =========================================================
+         VIEWPORT & BROWSER SETTINGS
+    ========================================================== -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
-    <!-- ════════════════════════════════════════════════════════
-         CORE SEO  (static fallback — React overwrites these on
-         each route via useSEO.js)
-    ════════════════════════════════════════════════════════ -->
-    <title>Sadhvith Creation | Handcrafted Products Made with Care</title>
+    <meta name="theme-color" content="#F97316" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- =========================================================
+         PRIMARY SEO
+         Static fallback.
+         React SEO updates these values for individual routes.
+    ========================================================== -->
+
+    <title>
+      Sadhvith Creation | Custom Name Plates & Personalized Products
+    </title>
 
     <meta
       name="description"
-      content="Shop handcrafted, thoughtfully designed products from Sadhvith Creation. Wooden name plates, custom gifts, and more — made with care and delivered across India."
+      content="Sadhvith Creation offers custom name plates, personalized name plates, wooden name plates, acrylic name plates, custom gifts and thoughtfully designed products in Bengaluru and across India."
     />
+
     <meta
-      name="keywords"
-      content="sadhvith creation, handcrafted products, wooden name plates, custom gifts, handmade india, personalized gifts"
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
-    <meta name="robots" content="index, follow" />
+
+    <meta
+      name="googlebot"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <meta
+      name="bingbot"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
     <meta name="author" content="Sadhvith Creation" />
 
-    <!-- ════════════════════════════════════════════════════════
-         CANONICAL  (homepage default; React updates per-route)
-    ════════════════════════════════════════════════════════ -->
-    <link rel="canonical" href="https://sadhvith-creation.vercel.app/" />
+    <!-- =========================================================
+         CANONICAL
+         Homepage fallback.
+         React SEO updates canonical URL on other routes.
+    ========================================================== -->
 
-    <!-- ════════════════════════════════════════════════════════
-         OPEN GRAPH  (Facebook, LinkedIn, WhatsApp previews)
-    ════════════════════════════════════════════════════════ -->
-    <meta property="og:type"        content="website" />
-    <meta property="og:url"         content="https://sadhvith-creation.vercel.app/" />
-    <meta property="og:site_name"   content="Sadhvith Creation" />
-    <meta property="og:locale"      content="en_IN" />
+    <link
+      rel="canonical"
+      href="https://sadhvith-creation.vercel.app/"
+    />
+
+    <!-- =========================================================
+         LANGUAGE / REGION
+    ========================================================== -->
+
+    <meta name="language" content="English" />
+    <meta name="content-language" content="en-IN" />
+
+    <!-- =========================================================
+         GOOGLE SEARCH CONSOLE VERIFICATION
+         
+         Keep this only if this exact verification token belongs
+         to your Google Search Console property.
+         
+         Your verification HTML file can also remain in:
+         frontend/public/google61d841da18ae6b36.html
+    ========================================================== -->
+
+    <meta
+      name="google-site-verification"
+      content="61d841da18ae6b36"
+    />
+
+    <!-- =========================================================
+         OPEN GRAPH
+         Used when pages are shared on WhatsApp, Facebook,
+         LinkedIn and other platforms supporting Open Graph.
+    ========================================================== -->
+
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:url"
+      content="https://sadhvith-creation.vercel.app/"
+    />
+
+    <meta
+      property="og:site_name"
+      content="Sadhvith Creation"
+    />
+
+    <meta
+      property="og:locale"
+      content="en_IN"
+    />
+
     <meta
       property="og:title"
-      content="Sadhvith Creation | Handcrafted Products Made with Care"
+      content="Sadhvith Creation | Custom Name Plates & Personalized Products"
     />
+
     <meta
       property="og:description"
-      content="Shop handcrafted, thoughtfully designed products from Sadhvith Creation. Made with care and delivered across India."
+      content="Explore custom name plates, personalized name plates, wooden name plates, acrylic name plates and thoughtfully designed products from Sadhvith Creation."
     />
+
     <meta
       property="og:image"
       content="https://sadhvith-creation.vercel.app/og-default.jpg"
     />
-    <meta property="og:image:width"  content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt"    content="Sadhvith Creation — Handcrafted Products" />
 
-    <!-- ════════════════════════════════════════════════════════
-         TWITTER CARD
-    ════════════════════════════════════════════════════════ -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:site"        content="@sadhvithcreation" />
+    <meta
+      property="og:image:width"
+      content="1200"
+    />
+
+    <meta
+      property="og:image:height"
+      content="630"
+    />
+
+    <meta
+      property="og:image:alt"
+      content="Sadhvith Creation custom name plates and personalized products"
+    />
+
+    <!-- =========================================================
+         TWITTER / X CARD
+    ========================================================== -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
     <meta
       name="twitter:title"
-      content="Sadhvith Creation | Handcrafted Products Made with Care"
+      content="Sadhvith Creation | Custom Name Plates & Personalized Products"
     />
+
     <meta
       name="twitter:description"
-      content="Shop handcrafted, thoughtfully designed products from Sadhvith Creation."
+      content="Explore custom name plates, personalized products and thoughtfully designed products from Sadhvith Creation."
     />
+
     <meta
       name="twitter:image"
       content="https://sadhvith-creation.vercel.app/og-default.jpg"
     />
 
-    <!-- ════════════════════════════════════════════════════════
-         GOOGLE SEARCH CONSOLE VERIFICATION
-         (your file already exists at /public/google61d841da18ae6b36.html;
-          the meta tag below is an alternative approach — use either one)
-    ════════════════════════════════════════════════════════ -->
-    <meta name="google-site-verification" content="61d841da18ae6b36" />
+    <meta
+      name="twitter:image:alt"
+      content="Sadhvith Creation custom name plates and personalized products"
+    />
 
-    <!-- ════════════════════════════════════════════════════════
-         FAVICON & TOUCH ICONS
-         Replace /favicon.svg and /apple-touch-icon.png with
-         real assets generated at https://realfavicongenerator.net
-    ════════════════════════════════════════════════════════ -->
-    <link rel="icon"             type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon"             type="image/png"     href="/favicon-32x32.png" sizes="32x32" />
-    <link rel="apple-touch-icon"                      href="/apple-touch-icon.png" sizes="180x180" />
-    <link rel="manifest"                              href="/site.webmanifest" />
+    <!-- =========================================================
+         FAVICON
+         
+         Keep favicon.svg if that file exists.
+         
+         The PNG icons below should ONLY remain if these files
+         actually exist inside frontend/public/.
+    ========================================================== -->
 
-    <!-- ════════════════════════════════════════════════════════
-         FONTS  (preconnect first, then stylesheet)
-    ════════════════════════════════════════════════════════ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon-32x32.png"
+      sizes="32x32"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png"
+      sizes="180x180"
+    />
+
+    <!-- =========================================================
+         WEB APP MANIFEST
+    ========================================================== -->
+
+    <link
+      rel="manifest"
+      href="/site.webmanifest"
+    />
+
+    <!-- =========================================================
+         MOBILE / APP METADATA
+    ========================================================== -->
+
+    <meta
+      name="mobile-web-app-capable"
+      content="yes"
+    />
+
+    <meta
+      name="apple-mobile-web-app-capable"
+      content="yes"
+    />
+
+    <meta
+      name="apple-mobile-web-app-title"
+      content="Sadhvith Creation"
+    />
+
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="default"
+    />
+
+    <!-- =========================================================
+         FONTS
+    ========================================================== -->
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- ════════════════════════════════════════════════════════
-         SITE-WIDE STRUCTURED DATA  (static; also injected by
-         useSEO.js so crawlers that render JS see it too)
-    ════════════════════════════════════════════════════════ -->
-    <script type="application/ld+json" data-id="website">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Sadhvith Creation",
-      "url": "https://sadhvith-creation.vercel.app",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://sadhvith-creation.vercel.app/products?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
+    <!-- =========================================================
+         STRUCTURED DATA — WEBSITE
+         
+         This helps search engines understand that this is the
+         official Sadhvith Creation website.
+    ========================================================== -->
+
+    <script
+      type="application/ld+json"
+      data-id="website"
+    >
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://sadhvith-creation.vercel.app/#website",
+        "name": "Sadhvith Creation",
+        "url": "https://sadhvith-creation.vercel.app/",
+        "description": "Sadhvith Creation offers custom name plates, personalized products and thoughtfully designed products.",
+        "inLanguage": "en-IN",
+        "publisher": {
+          "@id": "https://sadhvith-creation.vercel.app/#organization"
+        }
       }
-    }
     </script>
 
-    <script type="application/ld+json" data-id="organization">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Sadhvith Creation",
-      "url": "https://sadhvith-creation.vercel.app",
-      "logo": "https://sadhvith-creation.vercel.app/favicon.svg",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "availableLanguage": ["English", "Telugu", "Kannada"]
+    <!-- =========================================================
+         STRUCTURED DATA — ORGANIZATION
+    ========================================================== -->
+
+    <script
+      type="application/ld+json"
+      data-id="organization"
+    >
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://sadhvith-creation.vercel.app/#organization",
+        "name": "Sadhvith Creation",
+        "url": "https://sadhvith-creation.vercel.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sadhvith-creation.vercel.app/favicon.svg"
+        },
+        "description": "Sadhvith Creation creates custom name plates, personalized products and thoughtfully designed products.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": [
+            "English",
+            "Kannada",
+            "Telugu"
+          ]
+        }
       }
-    }
     </script>
   </head>
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
   </body>
 </html>
