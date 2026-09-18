@@ -7,7 +7,7 @@ export const config = {
 
   whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER,
 
-  contactEmail: "hello@sadhvithcreation.example",
+  contactEmail: "sadhvithcreationdeveloper@gmail.com",
 
   currency: "INR",
   currencySymbol: "₹",

@@ -19,14 +19,13 @@ export default function About() {
           </p>
           <p>
             We keep the range simple and considered rather than trying to be
-            everything to everyone — each product is chosen and made with a
+            everything to everyone each product is chosen and made with a
             clear idea of who it's for and where it will sit in a home or on
             a desk.
           </p>
           <p>
             If you have a question about materials, sizing, or customisation
-            before you buy, the easiest way to reach us is over WhatsApp —
-            you'll hear back from the people who actually make the products.
+            before you buy, the easiest way to reach us is over WhatsApp you'll hear back from the people who actually make the products.
           </p>
         </div>
       </div>

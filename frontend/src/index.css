@@ -1084,6 +1084,7 @@ p {
   max-width: 680px;
   font-size: 1.05rem;
   line-height: 1.75;
+  text-align: justify;
   color: var(--color-text-muted);
 }
 
